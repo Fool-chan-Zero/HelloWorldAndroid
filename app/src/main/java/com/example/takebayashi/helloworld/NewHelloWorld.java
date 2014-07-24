@@ -24,25 +24,27 @@ public class NewHelloWorld extends Activity {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("ActionButton","Pushed Button");
-                //Intentを使って画面遷移
-                Intent intent = new Intent(NewHelloWorld.this,HelloWorld.class);
-
-                EditText editText = (EditText)findViewById(R.id.editText);
-                String message=editText.getText().toString();
-                intent.putExtra(EXTRA,message);
-
-                startActivity(intent);
-            }
-        });
+        button.setOnClickListener(buttonListener);
 
         addContentView(linearLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         Log.v("LifeCycle", "onCreate");
     }
+
+    private final View.OnClickListener buttonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.d("ActionButton","Pushed Button");
+            //Intentを使って画面遷移
+            Intent intent = new Intent(NewHelloWorld.this,HelloWorld.class);
+
+            EditText editText = (EditText)findViewById(R.id.editText);
+            String message=editText.getText().toString();
+            intent.putExtra(EXTRA,message);
+
+            startActivity(intent);
+        }
+    };
 
     @Override
     public void onStart(){
