@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.content.Intent;
@@ -22,7 +23,23 @@ public class NewHelloWorld extends Activity {
         LinearLayout linearLayout=new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        addContentView(linearLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT));
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("ActionButton","Pushed Button");
+                //Intentを使って画面遷移
+                Intent intent = new Intent(NewHelloWorld.this,HelloWorld.class);
+
+                EditText editText = (EditText)findViewById(R.id.editText);
+                String message=editText.getText().toString();
+                intent.putExtra(EXTRA,message);
+
+                startActivity(intent);
+            }
+        });
+
+        addContentView(linearLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         Log.v("LifeCycle", "onCreate");
     }
@@ -63,19 +80,4 @@ public class NewHelloWorld extends Activity {
         Log.v("LifeCycle", "onDestroy");
     }
 
-    //
-    public void onPush(View v){
-        Log.d("ActionButton","Pushed Button");
-//        Intent intent = new Intent();
-        Intent intent = new Intent(this,HelloWorld.class);
-//        intent.setClassName("com.example.takebayashi.helloworld",
-//                "com.example.takebayashi.helloworld.HelloWorld");
-
-        EditText editText = (EditText)findViewById(R.id.editText);
-        String message=editText.getText().toString();
-        intent.putExtra(EXTRA,message);
-
-        startActivity(intent);
-
-    }
 }
