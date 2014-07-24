@@ -23,8 +23,8 @@ public class NewHelloWorld extends Activity {
         LinearLayout linearLayout=new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(buttonListener);
+        //ViewにOnClick~が定義されているのでキャストしなくてもいいらしい
+        findViewById(R.id.button).setOnClickListener(buttonListener);
 
         addContentView(linearLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
