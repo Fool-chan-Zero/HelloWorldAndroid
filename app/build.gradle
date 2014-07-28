@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '19.1'
+    buildToolsVersion '19.1.0'
     defaultConfig {
         applicationId 'com.example.takebayashi.helloworld'
-//        minSdkVersion 19
-//        targetSdkVersion 'L'
-        versionCode 1
+        minSdkVersion 14
+        targetSdkVersion 'L'
+        versionCode 19
         versionName '1.0'
     }
     buildTypes {
@@ -22,4 +22,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:19.1.+'
+    compile 'com.android.support:support-v4:19.1.+'
+    compile files('libs/volley.jar')
 }
