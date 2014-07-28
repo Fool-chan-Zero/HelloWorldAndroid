@@ -1,18 +1,28 @@
 package com.example.takebayashi.helloworld;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.content.Intent;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 public class NewHelloWorld extends Activity {
 
     public final static String EXTRA ="com.example.takebayashi.helloworld.MESSAGE";
+
+    private RequestQueue mQueue;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +39,28 @@ public class NewHelloWorld extends Activity {
         addContentView(linearLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         Log.v("LifeCycle", "onCreate");
+
+        mQueue = Volley.newRequestQueue(this);
+        requestVolley();
+    }
+
+    private void requestVolley(){
+        String url = "http://animemap.net/api/table/tokyo.json";
+
+        mQueue.add(new JsonObjectRequest(Request.Method.GET,url,null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        Log.d("logs",jsonObject.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Log.e("net error",volleyError.toString());
+                    }
+                }));
+        mQueue.start();
     }
 
     private final View.OnClickListener buttonListener = new View.OnClickListener() {

@@ -6,8 +6,8 @@ android {
     defaultConfig {
         applicationId 'com.example.takebayashi.helloworld'
         minSdkVersion 14
-        targetSdkVersion 'L'
-        versionCode 19
+//        targetSdkVersion 'L'
+//        versionCode 19
         versionName '1.0'
     }
     buildTypes {
@@ -22,7 +22,10 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+//appcompatの追加
     compile 'com.android.support:appcompat-v7:19.1.+'
-    compile 'com.android.support:support-v4:19.1.+'
+//supportパケの追加
+//    compile 'com.android.support:support-v4:19.1.+'
+//volleyLibの追加
     compile files('libs/volley.jar')
 }
