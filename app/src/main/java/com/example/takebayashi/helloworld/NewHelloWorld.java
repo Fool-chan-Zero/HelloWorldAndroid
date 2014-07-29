@@ -35,11 +35,14 @@ public class NewHelloWorld extends Activity {
 
         //ViewにOnClick~が定義されているのでキャストしなくてもいいらしい
         findViewById(R.id.button).setOnClickListener(buttonListener);
+        findViewById(R.id.btn_auth).setOnClickListener(buttonAuthListener);
 
         addContentView(linearLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
+
         Log.v("LifeCycle", "onCreate");
 
+        //volley
         mQueue = Volley.newRequestQueue(this);
         requestVolley();
     }
@@ -75,6 +78,12 @@ public class NewHelloWorld extends Activity {
             intent.putExtra(EXTRA,message);
 
             startActivity(intent);
+        }
+    };
+    private final View.OnClickListener buttonAuthListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
         }
     };
 

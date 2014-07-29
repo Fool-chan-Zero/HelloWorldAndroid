@@ -5,6 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="button">push</string>
+    <string name="btn_auth">auth</string>
+
     <string name="hello_new_world">Hello new World</string>
     <string name="title_activity_display_message">DisplayMessageActivity</string>
 
